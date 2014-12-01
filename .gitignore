@@ -1,0 +1,20 @@
+# History files
+.Rhistory
+# Example code in package build process
+*-Ex.R
+# R data files from past sessions
+.Rdata
+# RStudio files
+.Rproj.user/
+<<<<<<< HEAD
+.Rproj.user
+=======
+.Rproj.user
+# Yelp dataset
+yelp_dataset_challenge_academic_dataset/
+yelp_dataset_challenge_academic_dataset
+>>>>>>> 70943d817484be48c724ef5a0e9ef43d8619442c
+infx573-yelp.Rproj
+mlb11.RData
+yelp_academic_dataset_review.csv
+pop_density.csv
