@@ -4,7 +4,6 @@
 
 #### import predictor data ####
 predictors <- read.csv("predictors_with_rate_of_reviews.csv")
-predictors <- read.csv("categoryPredictors.csv")
 
 
 #### Using rpart to generate classification and regression trees ####
