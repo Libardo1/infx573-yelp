@@ -1,10 +1,13 @@
 
+# http://www.r-bloggers.com/a-brief-tour-of-the-trees-and-forests/
+
+## import predictor data
+predictors <- read.csv("predictors_with_rate_of_reviews.csv")
 
 #### Random Forest ####
 ## http://r.789695.n4.nabble.com/Re-Fwd-Re-Party-extract-BinaryTree-from-cforest-td3878100.html
 library(party)  				   # Alternative decision tree algorithm
 library(partykit)				   # Convert rpart object to BinaryTree
-predictors <- read.csv("predictors_with_rate_of_reviews.csv")
 cf <- cforest(frmla, data = raw) 
 pt <- party:::prettytree(cf@ensemble[[1]], names(cf@data@get("input"))) 
 pt 
@@ -16,25 +19,6 @@ nt
 plot(nt) 
 prp(nt)
 
-
-###############
-# MAPTREE
-# http://www.r-bloggers.com/a-brief-tour-of-the-trees-and-forests/
-library(maptree)
-library(cluster)
-draw.tree( clip.rpart (rpart ( raw), best=7),
-           nodeinfo=TRUE, units="species",
-           cases="cells", digits=0)
-a = agnes ( raw[2:4], method="ward" )
-names(a)
-a$diss
-b = kgs (a, a$diss, maxclust=20)
-
-plot(names(b), b, xlab="# clusters", ylab="penalty", type="n")
-xloc = names(b)[b==min(b)]
-yloc = min(b)
-ngon(c(xloc,yloc+.75,10, "dark green"), angle=180, n=3)
-apply(cbind(names(b), b, 3, 'blue'), 1, ngon, 4) # cbind(x,y,size,color)
 
 #### Training and Testing ####
 n.points <- 37334 # number of rows in the dataset
