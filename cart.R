@@ -6,10 +6,13 @@
 predictors <- read.csv("predictors_with_rate_of_reviews.csv")
 
 
-#### Using rpart to generate desission trees ####
+#### Using rpart to generate classification and regression trees ####
 library(rpart)
 # create a variable to predict if a business will get above or below 100 reviews
 predictors$limiter <- as.factor(ifelse(predictors$review_count > 100, c(1), c(0)))
+
+# or maybe try with 1000 as the cutoff
+# predictors$limiter <- as.factor(ifelse(predictors$review_count > 1000, c(1), c(0)))
 
 # tidy the dataset, get rid of 1:1 predictors like name and review_count
 raw = subset(predictors, select=c(open, stars:review_timing, rate, limiter))
@@ -43,6 +46,8 @@ text(fit.pruned, use.n=TRUE, all=TRUE, cex=.8)
 library(rattle)					   # Fancy tree plot
 library(rpart.plot)				 # Enhanced tree plots
 library(RColorBrewer)			 # Color selection for fancy tree plot
+library(party)
+library(partykit)
 prp(fit.pruned, faclen = 0, cex = 0.8, extra = 1) 
 # faclen = 0 for full lenght attribute names
 prp(fit.pruned) # run with defaults to try to get the plot to not overlap
